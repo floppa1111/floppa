@@ -1,0 +1,1459 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #151515;
+    --text-color: #e0e0e0;
+    --accent-color: #ff9c30;
+    --secondary-accent: #00a2ff;
+    --green-accent: #00ff66;
+    --purple-accent: #a200ff;
+    --tag-bg: rgba(30, 30, 30, 0.6);
+    --neon-glow: 0 0 10px rgba(255, 156, 48, 0.6);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --transition-speed: 0.3s;
+    --card-border: #8B4513;
+    --brown-border: #8B4513;
+    --dark-brown-border: #5D3A1A;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --sidebar-bg: #0a0a0a;
+    --sidebar-item-bg: #151515;
+    --tablet-border: 2px solid var(--accent-color);
+    --tablet-border-radius: 16px;
+    --text-glow: 0 0 10px rgba(139, 69, 19, 0.8), 0 0 15px rgba(139, 69, 19, 0.5), 0 0 25px rgba(139, 69, 19, 0.3);
+    --neon-glow: 0 0 8px rgba(255, 162, 0, 0.7), 0 0 16px rgba(255, 162, 0, 0.5), 0 0 24px rgba(255, 162, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Invisible track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #654321; /* Brown thumb */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8B4513; /* Darker brown on hover */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(196, 83, 20, 0.15), transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+    display: block; /* Show gradient background by default */
+}
+
+.floating-leaves {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.leaf {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    animation: float-leaf var(--duration, 15s) linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+}
+
+.leaf-type-1 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23805432"><path d="M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3C9,14,14,8.91,22,8c0,5.09-2.32,7.72-6,9.8c-0.65,0.27-1.33,0.61-2,0.91l1.08,2.43L13.34,22c0.29-0.88,0.61-1.76,0.98-2.64C15.82,16.93,17,14.39,17,13Z"/></svg>');
+}
+
+.leaf-type-2 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%237a4f30"><path d="M21,3C21,3,21,12,12,19C12,19,19,16,21,7C22,5,21,3,21,3M11,19C9,19,4,16,4,11C4,11 4,9 7,9C9,9 10,10 10,10C10,10 11,5 15,3C15,3 16,8 16,11C15,13 14,14 14,14C14,14 16,14 17,14C17,15 17,17 12,18C11,19 11,19 11,19Z"/></svg>');
+}
+
+.leaf-type-3 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23aa7239"><path d="M7.86,21.92C6.33,21.92 5.5,20.7 5.5,19.66L5.5,7.74C5.5,5.77 8.33,2.69 10.19,2.69C10.91,2.69 11.3,3.1 11.56,3.67C12.58,3.84 14.39,5.1 14.39,7.74L14.39,19.66C14.39,20.7 13.54,21.92 12.11,21.92C11.03,21.92 10.5,21.13 10.5,19.66L10.5,11.46L9.5,11.46L9.5,19.66C9.5,21.13 8.94,21.92 7.86,21.92Z"/></svg>');
+}
+
+.leaf-autumn {
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5)) sepia(0.4) saturate(1.4) hue-rotate(-10deg);
+}
+
+.leaf-green {
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5)) sepia(0.2) saturate(1.2) hue-rotate(40deg);
+}
+
+.leaf-golden {
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5)) sepia(0.8) saturate(1.8) hue-rotate(10deg) brightness(1.2);
+}
+
+@keyframes float-leaf {
+    0% {
+        transform: translateY(-50px) translateX(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    5% {
+        opacity: var(--leaf-opacity, 0.7);
+        transform: translateY(0) translateX(calc(var(--translate-x-start) * 1px)) rotate(var(--rotate-z-start)) scale(var(--scale));
+    }
+    50% {
+        transform: translateY(calc(50vh)) translateX(calc(var(--translate-x-start) * 1px + var(--sway-x2) * 1px)) rotate(calc(var(--rotate-z-start) + var(--rotate-z2))) scale(var(--scale));
+    }
+    95% {
+        opacity: var(--leaf-opacity, 0.7);
+    }
+    100% {
+        transform: translateY(calc(100vh + 50px)) translateX(calc(var(--translate-x-start) * 1px + var(--sway-x4) * 1px)) rotate(calc(var(--rotate-z-start) + var(--rotate-z4))) scale(var(--scale));
+        opacity: 0;
+    }
+}
+
+.site-container {
+    display: flex;
+    min-height: 100vh;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 5000px;
+}
+
+/* Left sidebar styles */
+.profile-sidebar {
+    width: 300px;
+    background-color: #0f0f0f;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 10px 20px 20px;
+    border-right: 1px solid var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 162, 0, 0.6);
+    border-radius: var(--tablet-border-radius);
+}
+
+.profile-sidebar h1 {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: var(--text-glow);
+    animation: pulsate-text 2s infinite alternate;
+}
+
+.profile-image-container {
+    width: 160px;
+    height: 160px;
+    margin: 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--accent-color);
+    position: relative;
+    transition: transform 0.3s ease;
+    box-shadow: var(--neon-glow);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.profile-image-container:hover {
+    transform: scale(1.05);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Discord Status Styling */
+.discord-status-container {
+    background-color: #101010;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 20px 0;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 162, 0, 0.2);
+    max-width: 320px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.discord-status-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 156, 48, 0.3), transparent);
+    z-index: 1;
+    animation: shimmer 3s infinite;
+}
+
+.discord-status-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(25, 26, 28, 0.8), transparent);
+    z-index: 1;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
+}
+
+.discord-status-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 156, 48, 0.3);
+    border-color: #2b2d31;
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #d2d3d9;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-right: 14px;
+    background-color: #747f8d; /* Default gray status */
+    box-shadow: 0 0 12px rgba(116, 127, 141, 0.7);
+}
+
+.status-indicator.online {
+    background-color: #43b581; /* Online green */
+    box-shadow: 0 0 12px rgba(67, 181, 129, 0.8);
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.idle {
+    background-color: #faa61a; /* Idle yellow */
+    box-shadow: 0 0 8px rgba(250, 166, 26, 0.6);
+}
+
+.status-indicator.dnd {
+    background-color: #f04747; /* Do Not Disturb red */
+    box-shadow: 0 0 8px rgba(240, 71, 71, 0.6);
+}
+
+.status-indicator.offline {
+    background-color: #747f8d; /* Offline gray */
+}
+
+#status-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.activity-container {
+    display: flex !important;
+    align-items: center;
+    margin: 10px 0 4px;
+    background-color: rgba(30, 30, 30, 0.6);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--dark-brown-border);
+    transition: all var(--transition-speed) ease;
+    will-change: transform, border-color, box-shadow;
+}
+
+.activity-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    margin-right: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    background-color: transparent;
+    min-width: 48px;
+    overflow: hidden;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Xbox_Minecraft_1080x1080.jpg');
+    position: relative;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.activity-icon::before {
+    display: none;
+}
+
+.activity-container:hover .activity-icon {
+    transform: scale(1.1);
+}
+
+.activity-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#activity-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff9c30;
+    text-shadow: 0 0 15px rgba(255, 156, 48, 0.4), 0 0 5px rgba(255, 156, 48, 0.3);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+#activity-state {
+    font-size: 15px;
+    color: #b8b9bf;
+    margin-top: 6px;
+    opacity: 0.95;
+    line-height: 1.5;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-style: italic;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 12px rgba(67, 181, 129, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(67, 181, 129, 0.9); }
+    100% { box-shadow: 0 0 12px rgba(67, 181, 129, 0.6); }
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.sidebar-title {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.character-item {
+    background-color: var(--sidebar-item-bg);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.character-item:hover {
+    background-color: rgba(255, 162, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.skill-name {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.skill-bar {
+    height: 8px;
+    background-color: var(--sidebar-item-bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(to right, #ff8800, var(--accent-color));
+    border-radius: 4px;
+}
+
+/* Main content area */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Added for side-by-side layout */
+.content-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.content-column {
+    flex: 1;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 20px;
+    width: 100%;
+}
+
+.profile-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    text-shadow: var(--text-glow);
+}
+
+.username-tag {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+.pronouns {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    background-color: var(--tag-bg);
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid var(--brown-border);
+    box-shadow: 0 0 10px rgba(255, 162, 0, 0.6);
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-right: 10px;
+    text-shadow: var(--text-glow);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    text-shadow: var(--text-glow);
+    animation: pulsate-text 2.5s infinite alternate;
+}
+
+.main-content h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-shadow: var(--text-glow);
+    animation: pulsate-text 2s infinite alternate;
+}
+
+.section-content {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tag {
+    background-color: var(--tag-bg);
+    color: var(--accent-color);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.tag:hover {
+    background-color: rgba(255, 162, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: var(--neon-glow);
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-item {
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.project-item:hover {
+    background-color: rgba(255, 162, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: var(--neon-glow);
+}
+
+.project-icon {
+    color: var(--accent-color);
+    margin-right: 12px;
+}
+
+.arrow-icon {
+    margin-left: auto;
+    color: var(--accent-color);
+}
+
+.links-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.links-column {
+    flex: 1;
+}
+
+.links-category {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--brown-border);
+}
+
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.link-item {
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.link-item:hover {
+    background-color: rgba(255, 162, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: var(--neon-glow);
+}
+
+.link-icon {
+    width: 24px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.roblox { color: #000000; }
+.youtube { color: #ff0000; }
+.telegram { color: #0088cc; }
+.discord { color: #5865f2; }
+.github { color: #ffffff; }
+.spotify { color: #1db954; }
+
+.status-indicator {
+    display: none;
+}
+
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--brown-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(255, 162, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.music-player:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 162, 0, 0.8);
+}
+
+.music-player i {
+    color: var(--accent-color);
+    font-size: 20px;
+}
+
+.music-player.playing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 162, 0, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 162, 0, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 162, 0, 0.6);
+    }
+}
+
+.minecraft-lantern {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 70px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 48"><rect x="12" y="0" width="12" height="6" fill="%23222533"/><rect x="10" y="6" width="16" height="4" fill="%23222533"/><rect x="8" y="10" width="20" height="2" fill="%23444b5c"/><rect x="8" y="12" width="20" height="20" fill="%23222533"/><rect x="10" y="14" width="16" height="16" fill="%23805432"/><rect x="12" y="16" width="12" height="12" fill="%23d1a645"/><rect x="14" y="18" width="8" height="8" fill="%23ffef7d"/><rect x="8" y="32" width="20" height="2" fill="%23444b5c"/><rect x="10" y="34" width="16" height="4" fill="%23222533"/><rect x="12" y="38" width="12" height="2" fill="%23444b5c"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 100;
+    animation: lantern-sway 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: filter 0.5s ease;
+}
+
+/* Orange light (default) */
+.minecraft-lantern.on {
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 200, 50, 0.8));
+}
+
+/* Blue light */
+.minecraft-lantern.on.blue {
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(0, 162, 255, 0.8));
+}
+
+/* Green light */
+.minecraft-lantern.on.green {
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(0, 255, 102, 0.8));
+}
+
+/* Purple light */
+.minecraft-lantern.on.purple {
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(162, 0, 255, 0.8));
+}
+
+.minecraft-lantern.on::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+        circle, 
+        rgba(255, 162, 0, 0.6) 0%, 
+        rgba(255, 162, 0, 0.4) 30%,
+        rgba(255, 162, 0, 0.2) 60%,
+        rgba(255, 162, 0, 0) 80%
+    );
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(0);
+    z-index: -1;
+    pointer-events: none;
+    animation: pulse-light 3s infinite alternate;
+}
+
+/* Blue light gradient */
+.minecraft-lantern.on.blue::after {
+    background: radial-gradient(
+        circle, 
+        rgba(0, 162, 255, 0.6) 0%, 
+        rgba(0, 162, 255, 0.4) 30%,
+        rgba(0, 162, 255, 0.2) 60%,
+        rgba(0, 162, 255, 0) 80%
+    );
+}
+
+/* Green light gradient */
+.minecraft-lantern.on.green::after {
+    background: radial-gradient(
+        circle, 
+        rgba(0, 255, 102, 0.6) 0%, 
+        rgba(0, 255, 102, 0.4) 30%,
+        rgba(0, 255, 102, 0.2) 60%,
+        rgba(0, 255, 102, 0) 80%
+    );
+}
+
+/* Purple light gradient */
+.minecraft-lantern.on.purple::after {
+    background: radial-gradient(
+        circle, 
+        rgba(162, 0, 255, 0.6) 0%, 
+        rgba(162, 0, 255, 0.4) 30%,
+        rgba(162, 0, 255, 0.2) 60%,
+        rgba(162, 0, 255, 0) 80%
+    );
+}
+
+@keyframes pulse-light {
+    0% {
+        opacity: 0.7;
+        width: 300px;
+        height: 300px;
+    }
+    100% {
+        opacity: 1;
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@keyframes lantern-sway {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.minecraft-tree {
+    position: relative;
+    width: 220px;
+    height: 260px;
+    margin: -5px auto 0; /* Moved down to align with avatar top */
+    perspective: 1000px; /* For 3D transforms of leaves */
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(2px 8px 12px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 5px rgba(46, 125, 50, 0.3));
+}
+
+/* Add tree particles container specifically for Minecraft tree */
+.minecraft-tree::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.minecraft-tree-leaf {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #265c1d;
+    opacity: 0.8;
+    z-index: 4;
+    top: 30%;
+    left: 50%;
+    transform-origin: center;
+    animation: minecraft-leaf-fall 4s ease-in forwards;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+/* Occasional golden leaf for visual interest */
+.minecraft-tree-leaf.golden {
+    background-color: #d1a645;
+    animation: minecraft-leaf-fall-golden 5s ease-in forwards;
+    box-shadow: 0 0 8px rgba(209, 166, 69, 0.5);
+}
+
+@keyframes minecraft-leaf-fall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(calc(var(--fall-x) * 1px), calc(var(--fall-y) * 1px)) rotate(calc(var(--rotation) * 1deg));
+        opacity: 0;
+    }
+}
+
+@keyframes minecraft-leaf-fall-golden {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.5;
+    }
+    20% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(calc(var(--fall-x) * 1px), calc(var(--fall-y) * 1px)) rotate(calc(var(--rotation) * 1deg));
+        opacity: 0;
+    }
+}
+
+.tree-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    transform-origin: bottom center;
+    filter: contrast(1.1) saturate(1.2) drop-shadow(0 0 8px rgba(56, 142, 60, 0.2));
+    transition: filter 0.5s ease;
+}
+
+/* Add subtle glow effect when hovered */
+.minecraft-tree:hover .tree-image {
+    filter: contrast(1.15) saturate(1.25) drop-shadow(0 0 10px rgba(56, 142, 60, 0.3));
+}
+
+.minecraft-lantern.on ~ .minecraft-tree .tree-image {
+    filter: brightness(1.2);
+}
+
+@keyframes tree-glow {
+    0% {
+        filter: drop-shadow(0 0 15px rgba(56, 118, 29, 0.9));
+    }
+    100% {
+        filter: drop-shadow(0 0 25px rgba(76, 175, 80, 1)) brightness(1.2);
+    }
+}
+
+@keyframes tree-float {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateY(-3px) rotate(0.5deg) scale(1.01); }
+    50% { transform: translateY(0) rotate(0deg) scale(1); }
+    75% { transform: translateY(-3px) rotate(-0.5deg) scale(1.01); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+.tree-particles {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    width: 120px;
+    height: 80px;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.nyan-cat {
+    display: none;
+}
+
+@keyframes fly-nyan {
+    0% {
+        left: -200px;
+        opacity: 0;
+    }
+    100% {
+        left: calc(100% + 200px);
+        opacity: 0;
+    }
+}
+
+.particle {
+    position: absolute;
+    background-color: rgba(255, 180, 0, 0.7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10;
+    animation: float-particle var(--duration) ease-in forwards;
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+.tenor-gif-embed {
+    position: absolute;
+    top: 0;
+    left: 300px; /* Align with the start of main content (after sidebar width) */
+    width: calc(100% - 300px); /* Width of viewport minus sidebar */
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.falling-leaf {
+    background-color: #265c1d;
+}
+
+@keyframes fall-leaf {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+    }
+    to {
+        transform: translateY(400px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.minecraft-tree .tree-leaves {
+    filter: brightness(var(--leaves-brightness, 100%)) drop-shadow(0 0 10px rgba(27, 94, 32, 0.7));
+}
+
+.minecraft-tree .tree-trunk {
+    filter: brightness(var(--trunk-brightness, 100%));
+}
+
+@media (max-width: 900px) {
+    .site-container {
+        flex-direction: column;
+    }
+    
+    .profile-sidebar {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--card-border);
+    }
+    
+    .links-section {
+        flex-direction: column;
+    }
+    
+    .main-content {
+        margin-top: 0;
+    }
+    
+    .music-player {
+        position: absolute;
+        bottom: 20px;
+        right: 80px;
+    }
+    
+    .tenor-gif-embed {
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3; /* Make it more subtle on mobile so content is readable */
+    }
+}
+
+/* Animation for text glow pulsation */
+@keyframes pulsate-text {
+    0% {
+        text-shadow: var(--text-glow);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(139, 69, 19, 0.9), 0 0 25px rgba(139, 69, 19, 0.6), 0 0 35px rgba(139, 69, 19, 0.4);
+    }
+}
+
+/* Ultra-realistic falling leaf styling with brown glow */
+.falling-leaf {
+    position: absolute;
+    z-index: 5;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(139, 69, 19, 0.8));
+    will-change: transform, opacity;
+    backface-visibility: visible;
+    transform-style: preserve-3d;
+    pointer-events: none;
+    max-width: 30px;
+    height: auto;
+    animation: leaf-glow 3s ease-in-out infinite alternate;
+}
+
+.glowing-leaf {
+    filter: drop-shadow(0 0 12px rgba(160, 82, 45, 0.8)) drop-shadow(0 0 20px rgba(139, 69, 19, 0.7));
+    animation: intense-leaf-glow 2s ease-in-out infinite alternate;
+}
+
+/* Tree particles container - 3D space for leaves */
+.tree-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    perspective: 1000px;
+    perspective-origin: center;
+    transform-style: preserve-3d;
+    overflow: visible;
+}
+
+/* Basic fall animation as fallback */
+@keyframes fall-leaf {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+    }
+    to {
+        transform: translateY(400px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Brown glow animation for leaves */
+@keyframes leaf-glow {
+    0% {
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 8px rgba(139, 69, 19, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 15px rgba(160, 82, 45, 0.9));
+    }
+    100% {
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 8px rgba(139, 69, 19, 0.6));
+    }
+}
+
+/* More intense brown glow for special leaves */
+@keyframes intense-leaf-glow {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(160, 82, 45, 0.8)) drop-shadow(0 0 20px rgba(139, 69, 19, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(205, 133, 63, 1)) drop-shadow(0 0 30px rgba(160, 82, 45, 0.8));
+    }
+    100% {
+        filter: drop-shadow(0 0 10px rgba(160, 82, 45, 0.8)) drop-shadow(0 0 20px rgba(139, 69, 19, 0.6));
+    }
+}
+
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.intro-door-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro-door {
+    width: 160px;
+    height: 320px;
+    cursor: pointer;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 15px rgba(139, 90, 43, 0.6));
+    transition: transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.intro-door:hover {
+    transform: scale(1.02) rotateY(5deg);
+    filter: drop-shadow(5px 0 25px rgba(139, 90, 43, 0.8)) drop-shadow(0 0 10px rgba(255, 180, 0, 0.3));
+}
+
+.intro-door:active {
+    transform: scale(0.98) rotateY(10deg);
+    filter: drop-shadow(10px 0 15px rgba(139, 90, 43, 0.9)) brightness(1.1);
+    transition: transform 0.1s ease-out, filter 0.1s ease-out;
+}
+
+.intro-screen-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #8B4513; /* Brown color for text */
+    margin-top: 20px;
+    text-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+.minecraft-lantern.on.rainbow {
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+    animation: rainbow-filter 5s linear infinite;
+}
+
+/* Rainbow light gradient */
+.minecraft-lantern.on.rainbow::after {
+    background: radial-gradient(
+        circle, 
+        rgba(255, 0, 0, 0.6) 0%, 
+        rgba(255, 0, 0, 0.4) 30%,
+        rgba(255, 0, 0, 0.2) 60%,
+        rgba(255, 0, 0, 0) 80%
+    );
+    animation: rainbow-gradient 5s linear infinite;
+}
+
+@keyframes rainbow-filter {
+    0%, 100% { filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); }
+    33% { filter: brightness(1.5) drop-shadow(0 0 10px rgba(0, 255, 0, 0.8)); }
+    66% { filter: brightness(1.5) drop-shadow(0 0 10px rgba(0, 0, 255, 0.8)); }
+}
+
+@keyframes rainbow-gradient {
+    0% {
+        background: radial-gradient(
+            circle, 
+            rgba(255, 0, 0, 0.6) 0%, 
+            rgba(255, 0, 0, 0.4) 30%,
+            rgba(255, 0, 0, 0.2) 60%,
+            rgba(255, 0, 0, 0) 80%
+        );
+    }
+    16.67% {
+        background: radial-gradient(
+            circle, 
+            rgba(255, 255, 0, 0.6) 0%, 
+            rgba(255, 255, 0, 0.4) 30%,
+            rgba(255, 255, 0, 0.2) 60%,
+            rgba(255, 255, 0, 0) 80%
+        );
+    }
+    33.33% {
+        background: radial-gradient(
+            circle, 
+            rgba(0, 255, 0, 0.6) 0%, 
+            rgba(0, 255, 0, 0.4) 30%,
+            rgba(0, 255, 0, 0.2) 60%,
+            rgba(0, 255, 0, 0) 80%
+        );
+    }
+    50% {
+        background: radial-gradient(
+            circle, 
+            rgba(0, 255, 255, 0.6) 0%, 
+            rgba(0, 255, 255, 0.4) 30%,
+            rgba(0, 255, 255, 0.2) 60%,
+            rgba(0, 255, 255, 0) 80%
+        );
+    }
+    66.67% {
+        background: radial-gradient(
+            circle, 
+            rgba(0, 0, 255, 0.6) 0%, 
+            rgba(0, 0, 255, 0.4) 30%,
+            rgba(0, 0, 255, 0.2) 60%,
+            rgba(0, 0, 255, 0) 80%
+        );
+    }
+    83.33% {
+        background: radial-gradient(
+            circle, 
+            rgba(255, 0, 255, 0.6) 0%, 
+            rgba(255, 0, 255, 0.4) 30%,
+            rgba(255, 0, 255, 0.2) 60%,
+            rgba(255, 0, 255, 0) 80%
+        );
+    }
+    100% {
+        background: radial-gradient(
+            circle, 
+            rgba(255, 0, 0, 0.6) 0%, 
+            rgba(255, 0, 0, 0.4) 30%,
+            rgba(255, 0, 0, 0.2) 60%,
+            rgba(255, 0, 0, 0) 80%
+        );
+    }
+}
+
+/* Favorite Games Section */
+.favorite-games {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px;
+    height: 100%;
+    border: 2px solid var(--brown-border);
+    box-shadow: 0 0 10px rgba(255, 162, 0, 0.6);
+    position: relative;
+}
+
+.favorite-games:hover {
+    transform: scale(1.02);
+}
+
+.favorite-games-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-shadow: var(--text-glow);
+}
+
+.favorite-games-title i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--dark-brown-border);
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.game-item:hover {
+    background-color: rgba(255, 162, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: var(--neon-glow);
+}
+
+.game-name {
+    font-weight: 600;
+    color: var(--accent-color);
+    flex: 1;
+}
+
+.game-playtime {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-right: 10px;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.game-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.game-item:hover .game-logo {
+    transform: scale(1.1);
+}
+
+.content-row .card {
+    height: 100%;
+    margin-bottom: 0;
+}
+
+/* Activity container color changes based on lantern color */
+.minecraft-lantern.on ~ .discord-status-container .activity-container {
+    border: 1px solid rgba(255, 156, 48, 0.3);
+}
+
+.minecraft-lantern.on.blue ~ .discord-status-container .activity-container {
+    border: 1px solid rgba(0, 162, 255, 0.3);
+}
+
+.minecraft-lantern.on.green ~ .discord-status-container .activity-container {
+    border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.minecraft-lantern.on.purple ~ .discord-status-container .activity-container {
+    border: 1px solid rgba(162, 0, 255, 0.3);
+}
+
+.minecraft-lantern.on ~ .discord-status-container #activity-name {
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(255, 156, 48, 0.4);
+}
+
+.minecraft-lantern.on.blue ~ .discord-status-container #activity-name {
+    color: var(--secondary-accent);
+    text-shadow: 0 0 15px rgba(0, 162, 255, 0.4);
+}
+
+.minecraft-lantern.on.green ~ .discord-status-container #activity-name {
+    color: var(--green-accent);
+    text-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+}
+
+.minecraft-lantern.on.purple ~ .discord-status-container #activity-name {
+    color: var(--purple-accent);
+    text-shadow: 0 0 15px rgba(162, 0, 255, 0.4);
+}
+
+.minecraft-lantern.on.rainbow ~ .discord-status-container #activity-name {
+    animation: rainbow-text 5s linear infinite;
+}
+
+@keyframes rainbow-text {
+    0%, 100% { color: #ff0000; text-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+    25% { color: #00ff00; text-shadow: 0 0 15px rgba(0, 255, 0, 0.4); }
+    50% { color: #0000ff; text-shadow: 0 0 15px rgba(0, 0, 255, 0.4); }
+    75% { color: #ff00ff; text-shadow: 0 0 15px rgba(255, 0, 255, 0.4); }
+}
+
+/* Override display:none to make the activity container visible */
+.activity-container {
+    display: flex !important;
+}
+
+/* Orange (default) */
+body:has(.minecraft-lantern.on:not(.blue):not(.green):not(.purple):not(.rainbow)) .discord-status-container .activity-container {
+    border: 1px solid rgba(255, 156, 48, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 156, 48, 0.2);
+}
+
+body:has(.minecraft-lantern.on:not(.blue):not(.green):not(.purple):not(.rainbow)) .discord-status-container #activity-name {
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(255, 156, 48, 0.4);
+}
+
+/* Blue */
+body:has(.minecraft-lantern.on.blue) .discord-status-container .activity-container {
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 162, 255, 0.2);
+}
+
+body:has(.minecraft-lantern.on.blue) .discord-status-container #activity-name {
+    color: var(--secondary-accent);
+    text-shadow: 0 0 15px rgba(0, 162, 255, 0.4);
+}
+
+/* Green */
+body:has(.minecraft-lantern.on.green) .discord-status-container .activity-container {
+    border: 1px solid rgba(0, 255, 102, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 102, 0.2);
+}
+
+body:has(.minecraft-lantern.on.green) .discord-status-container #activity-name {
+    color: var(--green-accent);
+    text-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+}
+
+/* Purple */
+body:has(.minecraft-lantern.on.purple) .discord-status-container .activity-container {
+    border: 1px solid rgba(162, 0, 255, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(162, 0, 255, 0.2);
+}
+
+body:has(.minecraft-lantern.on.purple) .discord-status-container #activity-name {
+    color: var(--purple-accent);
+    text-shadow: 0 0 15px rgba(162, 0, 255, 0.4);
+}
+
+/* Rainbow */
+body:has(.minecraft-lantern.on.rainbow) .discord-status-container #activity-name {
+    animation: rainbow-text 5s linear infinite;
+}
+
+body:has(.minecraft-lantern.on.rainbow) .discord-status-container .activity-container {
+    animation: rainbow-border 5s linear infinite;
+}
+
+@keyframes rainbow-border {
+    0%, 100% { border-color: rgba(255, 0, 0, 0.3); box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 0, 0, 0.2); }
+    50% { border-color: rgba(0, 255, 255, 0.3); box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 255, 0.2); }
+}

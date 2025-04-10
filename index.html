@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>floppa site:3</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./leaf-animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <base href="./">
+</head>
+<body>
+    <div class="intro-screen" id="intro-screen">
+        <div class="intro-door-container">
+            <img src="./images/minecraft-door.png" alt="Minecraft Door" id="intro-door" class="intro-door">
+            <div class="intro-screen-text">click to see</div>
+        </div>
+    </div>
+    <div class="background-gradient"></div>
+    <div class="floating-leaves" id="leaves-container"></div>
+    
+    <div class="minecraft-lantern" id="minecraft-lantern"></div>
+    
+    <div class="site-container">
+        <!-- Left sidebar with profile -->
+        <div class="profile-sidebar">
+            <div class="minecraft-tree">
+                <img src="./images/minecraft-tree.png" alt="Minecraft Tree" class="tree-image">
+                <div class="tree-particles"></div>
+            </div>
+            <div class="profile-image-container">
+                <img src="./profile-image.jpg" alt="Profile Image" class="profile-image">
+            </div>
+            
+            <div class="discord-status-container">
+                <div class="status-header">
+                    <div class="status-indicator"></div>
+                    <span id="status-text">Loading status...</span>
+                </div>
+                <div id="activity-container" class="activity-container">
+                    <div id="activity-icon" class="activity-icon"></div>
+                    <div class="activity-details">
+                        <span id="activity-name"></span>
+                        <span id="activity-state"></span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="sidebar-section">
+                <h2 class="sidebar-title">Favorite Characters</h2>
+                <div class="character-grid">
+                    <div class="character-item">Alan Becker</div>
+                    <div class="character-item">Stickmans</div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-name">Lua</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">HTML/CSS/JS</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">C#/C++</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main content area -->
+        <div class="main-content">
+            <header class="profile-header">
+                <h1 class="profile-name">floppa <span class="username-tag">(@floppa_11111)</span></h1>
+                <p class="pronouns">he/him</p>
+            </header>
+
+            <section class="card">
+                <div class="section-header">
+                    <i class="fas fa-user icon"></i>
+                    <h2>About Me</h2>
+                </div>
+                <p class="section-content">did u know that imloveflop?</p>
+            </section>
+
+            <!-- Interests and Favorite Games in a row -->
+            <div class="content-row">
+                <!-- Left column - Interests -->
+                <div class="content-column">
+                    <section class="card">
+                        <div class="section-header">
+                            <i class="fas fa-heart icon"></i>
+                            <h2>Interests</h2>
+                        </div>
+                        <div class="interest-tags">
+                            <span class="tag">TAS</span>
+                            <span class="tag">Cheating</span>
+                            <span class="tag">Programming</span>
+                            <span class="tag">Gaming</span>
+                            <span class="tag">Music</span>
+                            <span class="tag">Lua</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">C#</span>
+                            <span class="tag">C++</span>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Right column - Favorite Games -->
+                <div class="content-column">
+                    <section class="favorite-games">
+                        <div class="favorite-games-title">
+                            <i class="fas fa-gamepad"></i>
+                            Favorite Games
+                        </div>
+                        <div class="games-list">
+                            <div class="game-item">
+                                <span class="game-name">Minecraft</span>
+                                <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Xbox_Minecraft_1080x1080.jpg" alt="Minecraft Logo" class="game-logo">
+                            </div>
+                            <div class="game-item">
+                                <div class="game-name">Roblox</div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Roblox_player_icon_black.svg/1200px-Roblox_player_icon_black.svg.png" alt="Roblox Logo" class="game-logo">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="card">
+                <div class="section-header">
+                    <i class="fas fa-link icon"></i>
+                    <h2>All Links</h2>
+                </div>
+                <div class="links-section">
+                    <div class="links-column">
+                        <h3 class="links-category">Main Links</h3>
+                        <div class="links-list">
+                            <a href="https://www.roblox.com/users/4557731153/profile" class="link-item">
+                                <i class="fas fa-cube link-icon roblox"></i>
+                                <span>Roblox</span>
+                            </a>
+                            <a href="https://www.youtube.com/@floppacheatsq" class="link-item">
+                                <i class="fab fa-youtube link-icon youtube"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="https://t.me/+380632560337" class="link-item">
+                                <i class="fab fa-telegram link-icon telegram"></i>
+                                <span>Telegram</span>
+                            </a>
+                            <a href="https://discord.com/users/1002927879539146803" class="link-item">
+                                <i class="fab fa-discord link-icon discord"></i>
+                                <span>Discord</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="links-column">
+                        <h3 class="links-category">Contact</h3>
+                        <div class="links-list">
+                            <a href="https://github.com/floppa1111" class="link-item">
+                                <i class="fab fa-github link-icon github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="music-links">
+                    <h3 class="links-category">Music</h3>
+                    <div class="links-list">
+                        <a href="https://open.spotify.com/user/31shrta4cy23xz7gumxio35mwahu" class="link-item">
+                            <i class="fab fa-spotify link-icon spotify"></i>
+                            <span>Spotify</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="music-player">
+        <i class="fas fa-music"></i>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
